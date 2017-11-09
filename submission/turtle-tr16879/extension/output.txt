@@ -1,0 +1,10 @@
+{
+	LT 90
+	DO B FROM 3 TO 12 {
+		SET C := 360 B / ;
+		DO A FROM 1 TO B {
+			FD 75
+			LT C
+		}
+	}
+}

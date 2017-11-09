@@ -1,0 +1,49 @@
+This extension uses the same formal grammar as previously, but with two 
+additional instructions, pen up ("PU") which prevents lines from being drawn,
+and pen down ("PD") which starts drawing lines again. The updated formal 
+grammar is shown below:
+
+<MAIN> ::= "{" <INSTRCTLST>
+
+<INSTRCTLST> ::= <INSTRUCTION><INSTRCTLST> | "}"
+
+<INSTRUCTION> ::= <FD> | <LT> | <RT> | <DO> | <SET> | "PU" | "PD"
+
+<FD> ::= "FD" <VARNUM>
+<LT> ::= "LT" <VARNUM>
+<RT> ::= "RT" <VARNUM>
+
+<DO> ::= "DO" <VAR> "FROM" <VARNUM> "TO" <VARNUM> "{" <INSTRCTLST>
+
+<VARNUM> ::= number | <VAR>
+<VAR> ::= [A−Z]
+
+<SET> ::= "SET" <VAR> ":=" <POLISH>
+<POLISH> ::= <OP> <POLISH> | <VARNUM> <POLISH> | ";"
+<OP> ::= "+" | "−" | "*" | "/"
+
+This extension modifies the interpreter & parser to work in real time. This
+means that instead of reading in the 'turtle' instruction from file, the 
+instructions can be entered into the terminal/console and the instructions will
+be interpreted in the SDL window as they are entered.
+
+When the program is run, the turtle instructions must be entered into the 
+console. While waiting for input the SDL window will freeze. If any tokens 
+are entered that do not follow the formal grammar then parsing will end and
+program will wait for the user to exit the SDL window.
+
+Instructions can be entered as individual tokens, individual lines, or several
+lines at once. Any whitespace can be used to separate tokens.
+
+For DO loops, the instructions from the first iteration will be interpreted as
+they are entered into the console. Once the intruction list closing brace "}"
+is entered, all remaining loop interations will be interpreted.
+
+In the top left are two UI elements, the compass and the Pen Up/Down indicator.
+The compass shows the current angle of the turtle, which can be seen to change
+when entering LT and RT instructions. The Pen Up/Down indicator will have an
+arrow pointing down to indicate that the pen is currently down, or an arrow 
+pointing up to indicate that the pen is currently up.
+
+A valid turtle file is also created as an output in the text file output.txt,
+based on the instructions inputted while the program was running.

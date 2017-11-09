@@ -1,0 +1,6 @@
+{
+	DO A FROM 1 TO 3 {
+		FD 20
+		RT 20
+	}
+}

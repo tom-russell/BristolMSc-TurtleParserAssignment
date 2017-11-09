@@ -1,0 +1,10 @@
+{
+	FD 20
+	RT 35
+	DO A FROM 1 TO 4 {
+		FD 1
+		LT 60
+	}
+	
+}
+}
